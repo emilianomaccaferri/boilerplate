@@ -1,0 +1,12 @@
+{
+    "script": "./app/build/app.js",
+    "watch": true,
+    "ignore_watch": [
+        "./app/assets"
+    ],
+    "watch_options": {
+        "followSymlinks": false
+    },
+    "node_args": [],
+    "name": "thelist"
+}
