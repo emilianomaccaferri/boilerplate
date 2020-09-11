@@ -14,8 +14,7 @@ module.exports = {
     },
     module: {
         rules: [
-            // tutti i file .ts devono essere compilati da ts-loader
-            { test: /\.tsx$/, loader: "ts-loader" },
+            { test: /\.tsx?$/, loader: "ts-loader" },
             { test: /\.s[ac]ss$/, use: [
                     'style-loader', 
                     'css-loader',
