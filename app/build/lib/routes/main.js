@@ -5,9 +5,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 const express_1 = __importDefault(require("express"));
 let router = express_1.default.Router();
 router.get('/', (req, res) => {
-    res.json({
-        success: true,
-        message: 'hello'
+    res.render('index', {
+        title: 'Hello world',
+        components: ['component'],
+        bundles: ['home'] // specify bundles and components contained webpack.config.js like this
     });
 });
 module.exports = router;

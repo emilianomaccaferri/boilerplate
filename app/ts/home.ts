@@ -1,3 +1,8 @@
-import '../scss/style.scss';
+import Vue from 'vue'
 
-console.log("ciao vezzoooo");
+Vue.component('test', require('./ui/components/Component.vue').default);
+
+const app = new Vue({
+    el: '#app',
+});
+

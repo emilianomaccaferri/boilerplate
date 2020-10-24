@@ -1,4 +1,5 @@
 import express from 'express';
+import path from 'path'
 const helmet = require('helmet');
 const cors = require('cors');
 const cookiep = require('cookie-parser');
@@ -12,14 +13,11 @@ export default class Router{
     constructor(){
         
         this.#app = express();
-        this.#whitelist = ['*'] // whitelist di domini per il CORS
+        this.#whitelist = ['*']
 
     }
 
     init(): void{
-
-        // facciamo un file separato per ogni gruppo di routes
-        // così è tutto molto più organizzato
 
         let cors_options = {
             credentials: true,
@@ -28,17 +26,19 @@ export default class Router{
             methods: ['GET', 'POST', 'DELETE', 'PUT']
         }
 
-        this.#app.use(helmet());
+        // this.#app.use(helmet()); // configure helmet before going to prod
         this.#app.use(cors(cors_options));
         this.#app.enable("trust proxy");
         this.#app.disable("x-powered-by");
+        this.#app.set("view engine", "twig");
+        this.#app.set("views", path.resolve("app/views"))
         this.#app.use(cookiep());
         this.#app.use(body.json({ limit: "20mb" }));
         this.#app.use(
             body.urlencoded({ limit: "20mb", extended: true, parameterLimit: 100 }),
         );
 
-        this.#app.use('/assets', express.static('./assets'));
+        this.#app.use('/assets', express.static(path.resolve('app/assets')));
         this.#app.use('/', require("./routes/main")); 
 
         this.#app.all('*', (req: express.Request, res: express.Response) => {

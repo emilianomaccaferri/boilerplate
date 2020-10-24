@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{title}}</title>
+    </head>
+    <body>
+        <div id="app">
+            <test />
+        </div>
+    </body>
+    <!-- inject components and bundles like this -->
+    {% for bundle in bundles %}
+        <script src="/assets/js/{{bundle}}.bundle.js"></script>
+    {% endfor %}
+    {% for component in components %}
+        <script src="/assets/js/components/{{component}}.component.js"></script>
+    {% endfor %}
+</html>
